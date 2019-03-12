@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--suppress ALL -->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.gome.bigData.bi</groupId>
+        <artifactId>realtimeCalculation</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>canal</artifactId>
+    <name>canal</name>
+    <packaging>jar</packaging>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <!--公共工具: 配置项获取 -->
+        <!--<dependency>-->
+            <!--<groupId>com.gome.bigData.bi</groupId>-->
+            <!--<artifactId>realtime-common-util</artifactId>-->
+            <!--<version>1.0.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
+        <!-- kafka dependency-->
+        <dependency>
+            <groupId>com.gome.bigData.bi</groupId>
+            <artifactId>kafka</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!--json dependency-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!--canal dependency-->
+        <dependency>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+            <version>${canal.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka-clients.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>product</id>
+            <properties>
+                <env>product</env>
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <!--
+        <filters>
+            <filter>src/main/resources/config/${env}/config.properties</filter>
+        </filters>
+        -->
+        <finalName>canal</finalName>
+        <resources>
+            <resource>
+                <!-- 资源根目录排除各环境的配置，使用单独的资源目录来制定-->
+                <directory>src/main/resource</directory>
+                <excludes>
+                    <exclude>config/local/*</exclude>
+                    <exclude>config/product/*</exclude>
+                </excludes>
+                <!--
+                <filtering>true</filtering>
+                -->
+            </resource>
+            <resource>
+                <!-- 把resource/config下的文件打包到classes下的config目录下-->
+                <directory>src/main/resource/config/${env}</directory>
+                <targetPath>config/${env}</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.allen.capturewebdata.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

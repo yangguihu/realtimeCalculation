@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<c3p0-config>
+
+	<named-config name="passport">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://10.152.9.11:3307/passport?autoReconnect=true</property>
+		<property name="user">readonly</property>
+		<property name="password">11_gomebdc_0804</property>
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">10</property>
+		<property name="maxPoolSize">100</property><!-- intergalactoApp adopts a different approach to configuring statement caching -->
+		<property name="acquireRetryAttempts">1</property>
+		<property name="acquireRetryDelay">1</property>
+		<property name="idleConnectionTestPeriod">1</property>
+		<property name="testConnectionCheckin">true</property>
+	</named-config>
+	<named-config name="ccsdb">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://10.152.9.12:3306/ccsdb?autoReconnect=true</property>
+		<property name="user">readonly</property>
+		<property name="password">12_gomebdc_0804</property>
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">5</property>
+		<property name="maxPoolSize">20</property><!-- intergalactoApp adopts a different approach to configuring statement caching -->
+		<property name="acquireRetryAttempts">30</property>
+		<property name="acquireRetryDelay">1000</property>
+		<property name="idleConnectionTestPeriod">3600</property>
+		<property name="testConnectionCheckin">true</property>
+	</named-config>
+	<named-config name="rmpsdb_fen">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://10.152.9.12:3306/rmpsdb_fen?autoReconnect=true</property>
+		<property name="user">readonly</property>
+		<property name="password">12_gomebdc_0804</property>
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">5</property>
+		<property name="maxPoolSize">20</property><!-- intergalactoApp adopts a different approach to configuring statement caching -->
+		<property name="acquireRetryAttempts">30</property>
+		<property name="acquireRetryDelay">1000</property>
+		<property name="idleConnectionTestPeriod">3600</property>
+		<property name="testConnectionCheckin">true</property>
+	</named-config>
+	<named-config name="canal_test">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://10.152.9.12:3306/canal_test?autoReconnect=true</property>
+		<property name="user">root</property>
+		<property name="password">root</property>
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">5</property>
+		<property name="maxPoolSize">20</property><!-- intergalactoApp adopts a different approach to configuring statement caching -->
+		<property name="acquireRetryAttempts">30</property>
+		<property name="acquireRetryDelay">1000</property>
+		<property name="idleConnectionTestPeriod">3600</property>
+		<property name="testConnectionCheckin">true</property>
+	</named-config>
+
+</c3p0-config>
+

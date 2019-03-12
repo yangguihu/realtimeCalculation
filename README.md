@@ -1,2 +1,3 @@
 # realtimeCalculation
 实时计算
+使用canal解析mysql业务库的binlog,发送到kafka。再使用storme，消费对应topic数据，结果计入redis中
